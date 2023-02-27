@@ -1,4 +1,4 @@
-package com.scala.monixmdc
+package com.scala.monixmdc.common
 
 import monix.execution.misc.Local
 import org.apache.logging.log4j.spi.ThreadContextMap
@@ -13,7 +13,6 @@ class MonixLocalScalaImmutableMap extends ThreadContextMap {
   private[this] val local = Local[Map[String, String]](Map.empty[String, String])
 
   override def put(key: String, value: String): Unit = {
-    logger.info(s"Immutable Map MDC: put to MDC $key -> ${value}")
     local.update(local() + (key -> value))
   }
 
